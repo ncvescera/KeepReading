@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 const String _document = 'manual.pdf';
