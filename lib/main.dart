@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/pdf_viewer.dart';
 
-const appName = 'Keep Reading 💣';
+const appName = 'Keep Reading ';
 
 void main() {
   runApp(const MyApp());

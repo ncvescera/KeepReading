@@ -14,7 +14,12 @@ class PDFViewer extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(appName),
+        title: Row(
+          children: [
+            Text(appName),
+            Image.asset('assets/icon/icon.png', width: 30, height: 30),
+          ],
+        ),
       ),
       body: Center(
         child: SfPdfViewer.asset(
