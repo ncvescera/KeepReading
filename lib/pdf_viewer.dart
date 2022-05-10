@@ -25,6 +25,10 @@ class PDFViewer extends StatelessWidget {
         child: SfPdfViewer.asset(
           'assets/$_document',
           controller: controller,
+          // TODO: could be a good idea ??
+          pageLayoutMode: PdfPageLayoutMode.single,
+          canShowScrollHead: false,
+          // ---------------------- /
         ),
       ),
       bottomNavigationBar: Container(
