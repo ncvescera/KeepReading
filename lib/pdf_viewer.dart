@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import 'about_page.dart';
+
 const String _document = 'manual.pdf';
 
 class PDFViewer extends StatelessWidget {
@@ -20,8 +22,36 @@ class PDFViewer extends StatelessWidget {
             Image.asset('assets/icon/icon.png', width: 30, height: 30),
           ],
         ),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) {
+              switch (value) {
+                case 'about':
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AboutPage()),
+                  );
+                  break;
+                default:
+                  return;
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+              PopupMenuItem(
+                value: 'about',
+                child: Row(
+                  children: const [
+                    Text('About '),
+                    Icon(Icons.info, color: Colors.black),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
       ),
       body: Center(
+        //TODO: try pdfx
         child: SfPdfViewer.asset(
           'assets/$_document',
           controller: controller,
