@@ -4,6 +4,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 // needed a StateFull widget because _packageInfo needs to be inizialized and loaded.
 // it seems that packageInfo cant be loaded without an async function.
 
+// TODO: maybe a better way to load the packageInfo and use a StateLess widget?
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
 
