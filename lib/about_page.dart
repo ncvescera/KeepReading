@@ -44,10 +44,12 @@ class _AboutPageState extends State<AboutPage> {
       appBar: AppBar(
         title: const Text('About this App'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Center(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/icon/icon.png',
@@ -91,7 +93,7 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                     ),
                     TextSpan(
-                      text: '  PDF Manual. ',
+                      text: '  PDF Manual.\n',
                     ),
                     TextSpan(
                       text:
