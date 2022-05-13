@@ -5,8 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 // needed a StateFull widget because _packageInfo needs to be inizialized and loaded.
 // it seems that packageInfo cant be loaded without an async function.
-
-// TODO: maybe a better way to load the packageInfo and use a StateLess widget?
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
 
@@ -14,28 +12,20 @@ class AboutPage extends StatefulWidget {
   State<AboutPage> createState() => _AboutPageState();
 }
 
-final Uri _url = Uri.parse('https://github.com/ncvescera/KeepReading');
-
 class _AboutPageState extends State<AboutPage> {
-  PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-    buildSignature: 'Unknown',
-  );
+  String version = "";
+  final Uri _url = Uri.parse('https://github.com/ncvescera/KeepReading');
 
   @override
   void initState() {
     super.initState();
-    _initPackageInfo();
+    _getAppVersion();
   }
 
-  Future<void> _initPackageInfo() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() {
-      _packageInfo = info;
-    });
+  void _getAppVersion() {
+    PackageInfo.fromPlatform().then((package) => setState(() {
+          version = package.version;
+        }));
   }
 
   @override
@@ -63,7 +53,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               Text(
-                'v ${_packageInfo.version}\n\n',
+                'v $version\n\n',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontStyle: FontStyle.italic,
