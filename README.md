@@ -1,14 +1,12 @@
-<center>
+<p align="center">
     <img src="./KeepReading/assets/icon/icon.png">
-    <h1>KeepReading</h1>
-</center>
+    <h1 align="center">KeepReading</h1>
+</p>
 
 **KeepReading** is a Mobile (Android/IOS) Cross-Platform App wrapper for the _Keep Talking and Nobody Explodes_ manual.
 It helps you to jump directly to a specific section of the manual with just a tap 🚀!
 
-<center>
-    <img src="./imgs/screen.gif" height="500px">
-</center>
+<p align="center"> <img src="./imgs/screen.gif" height="500px"></p>
 
 
 ## Build from Source
