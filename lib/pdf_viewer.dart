@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:pdfx/pdfx.dart';
 
 import 'about_page.dart';
 
@@ -12,7 +12,8 @@ class PDFViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PdfViewerController controller = PdfViewerController();
+    final PdfController controller =
+        PdfController(document: PdfDocument.openAsset('assets/$_document'));
 
     return Scaffold(
       appBar: AppBar(
@@ -52,13 +53,8 @@ class PDFViewer extends StatelessWidget {
       ),
       body: Center(
         //TODO: try pdfx
-        child: SfPdfViewer.asset(
-          'assets/$_document',
+        child: PdfView(
           controller: controller,
-          // TODO: could be a good idea ??
-          pageLayoutMode: PdfPageLayoutMode.single,
-          canShowScrollHead: false,
-          // ---------------------- /
         ),
       ),
       bottomNavigationBar: Container(
