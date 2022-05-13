@@ -53,7 +53,7 @@ class _AboutPageState extends State<AboutPage> {
                 'assets/icon/icon.png',
               ),
               const Text(
-                'Keep Reading',
+                'KeepReading',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32,
@@ -76,7 +76,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Keep Reading',
+                      text: 'KeepReading',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -106,29 +106,30 @@ class _AboutPageState extends State<AboutPage> {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                  ),
+                  children: [
+                    const TextSpan(
+                      text: 'For more info, please visit: ',
                     ),
-                    children: [
-                      const TextSpan(
-                        text: 'For more info, please visit: ',
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (!await launchUrl(_url,
+                              mode: LaunchMode.externalApplication)) {
+                            throw 'Could not launch $_url';
+                          }
+                        },
+                      text: 'GitHub Repo',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
                       ),
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () async {
-                            if (!await launchUrl(_url,
-                                mode: LaunchMode.externalApplication)) {
-                              throw 'Could not launch $_url';
-                            }
-                          },
-                        text: 'GitHub Repo',
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ]),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
