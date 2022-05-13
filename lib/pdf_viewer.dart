@@ -53,7 +53,6 @@ class PDFViewer extends StatelessWidget {
         ],
       ),
       body: Center(
-        //TODO: try pdfx
         child: PdfView(
           controller: controller,
           backgroundDecoration: const BoxDecoration(
