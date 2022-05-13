@@ -1,0 +1,4 @@
+#Fri May 13 21:32:26 CEST 2022
+base.0=/home/ncvescera/Desktop/flutter-test/KeepReading/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

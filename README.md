@@ -1,16 +1,41 @@
-# my_app
+<center>
+    <img src="./KeepReading/assets/icon/icon.png">
+    <h1>KeepReading</h1>
+</center>
 
-A new Flutter project.
+**KeepReading** is a Mobile (Android/IOS) Cross-Platform App wrapper for the _Keep Talking and Nobody Explodes_ manual.
+It helps you to jump directly to a specific section of the manual with just a tap 🚀!
 
-## Getting Started
+<center>
+    <img src="./imgs/screen.gif" height="500px">
+</center>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Build from Source
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+1. Clone the repo: 
+    ```
+    git clone https://github.com/ncvescera/KeepReading.git
+    cd KeepReading/KeepReading
+    ```
+2. Get all required packages:
+    ```
+    flutter pub get
+    ```
+3. Copy your manual inside `assets/`. You must have something like this:
+    ```
+    ls assets
+    button_icons
+    icon
+    manual.pdf
+    ```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Build the apk/ipa with
+    ```
+    flutter build apk
+    flutter build ipa
+    ```
+
+For more info see: 
+- [Deploy on Android](https://docs.flutter.dev/deployment/android)
+- [Deploy on IOS](https://docs.flutter.dev/deployment/ios)
