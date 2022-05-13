@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:keep_reading/pdf_viewer.dart';
 
 const appName = 'Keep Reading ';
@@ -16,9 +17,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: appName,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          color: Colors.red,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            systemNavigationBarColor: Colors.red, // Navigation bar
+            statusBarColor: Colors.red, // Status bar
+          ),
+        ),
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.red,
-          //accentColor: Colors.accents[10],
+          brightness: Brightness.light,
         ),
       ),
       home: const PDFViewer(appName: appName),
