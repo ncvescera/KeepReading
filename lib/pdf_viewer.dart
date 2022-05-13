@@ -12,8 +12,9 @@ class PDFViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PdfController controller =
-        PdfController(document: PdfDocument.openAsset('assets/$_document'));
+    final PdfController controller = PdfController(
+      document: PdfDocument.openAsset('assets/$_document'),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -55,6 +56,16 @@ class PDFViewer extends StatelessWidget {
         //TODO: try pdfx
         child: PdfView(
           controller: controller,
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.grey,
+          ),
+          pageSnapping: false,
+          renderer: (PdfPage page) => page.render(
+            width: page.width * 2,
+            height: page.height * 2,
+            format: PdfPageImageFormat.png,
+            backgroundColor: '#FFFFFF',
+          ),
         ),
       ),
       bottomNavigationBar: Container(
