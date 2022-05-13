@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // needed a StateFull widget because _packageInfo needs to be inizialized and loaded.
 // it seems that packageInfo cant be loaded without an async function.
@@ -11,6 +13,8 @@ class AboutPage extends StatefulWidget {
   @override
   State<AboutPage> createState() => _AboutPageState();
 }
+
+final Uri _url = Uri.parse('https://github.com/ncvescera/KeepReading');
 
 class _AboutPageState extends State<AboutPage> {
   PackageInfo _packageInfo = PackageInfo(
@@ -38,7 +42,7 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About this App 🪧'),
+        title: const Text('About this App'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -70,7 +74,7 @@ class _AboutPageState extends State<AboutPage> {
                     color: Colors.black,
                     fontSize: 16.0,
                   ),
-                  children: <TextSpan>[
+                  children: [
                     TextSpan(
                       text: 'Keep Reading',
                       style: TextStyle(
@@ -93,21 +97,38 @@ class _AboutPageState extends State<AboutPage> {
                       text:
                           'It helps you to jump directly to a specific section of the maual with just a tap  🚀!',
                     ),
-                    TextSpan(
-                      text: '\n\n\n\n',
-                    ),
-                    TextSpan(
-                      text: 'For more info, please visit: ',
-                    ),
-                    TextSpan(
-                      text: 'GitHub Repo',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
                   ],
                 ),
+              ),
+              const Text(
+                '\n\n\n\n',
+              ),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                    children: [
+                      const TextSpan(
+                        text: 'For more info, please visit: ',
+                      ),
+                      TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            if (!await launchUrl(_url,
+                                mode: LaunchMode.externalApplication)) {
+                              throw 'Could not launch $_url';
+                            }
+                          },
+                        text: 'GitHub Repo',
+                        style: const TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ]),
               ),
             ],
           ),
