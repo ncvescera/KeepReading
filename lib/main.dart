@@ -4,6 +4,7 @@ import 'package:keep_reading/pdf_viewer.dart';
 const appName = 'Keep Reading ';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
