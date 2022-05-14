@@ -36,6 +36,12 @@ class NoFilePage extends StatelessWidget {
 
                   if (result) {
                     notifyParent();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Uploaded Manual Successfully 👍"),
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
                   }
                 },
                 child: const Text('Choose a file'),

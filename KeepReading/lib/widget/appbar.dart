@@ -16,6 +16,12 @@ class AppBarGenerator {
             switch (value) {
               case 'remove':
                 deleteFile();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Deleted Manual Successfully 👍"),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
                 break;
               case 'about':
                 Navigator.push(
