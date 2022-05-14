@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:keep_reading/page/home_mage.dart';
 
 const appName = 'KeepReading ';
+const barColor = Color.fromARGB(255, 190, 18, 6);
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
       title: appName,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          color: Colors.red,
+          color: barColor,
           systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarColor: Colors.red, // Navigation bar
-            statusBarColor: Colors.red, // Status bar
+            systemNavigationBarColor: barColor, // Navigation bar
+            statusBarColor: barColor, // Status bar
           ),
         ),
         colorScheme: ColorScheme.fromSwatch(
