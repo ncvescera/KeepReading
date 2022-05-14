@@ -14,7 +14,6 @@ class NoFilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: const ValueKey('NoFilePage'),
       backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
       appBar: AppBarGenerator.mainAppBar(context, 'KeepReading ', deleteFile),
       body: Center(
