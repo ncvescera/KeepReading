@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:keep_reading/API/file_manager.dart';
 import 'package:keep_reading/widget/appbar.dart';
 import 'package:pdfx/pdfx.dart';
-
-import 'about_page.dart';
-
-const String _document = 'manual.pdf';
 
 class PDFViewer extends StatelessWidget {
   const PDFViewer({

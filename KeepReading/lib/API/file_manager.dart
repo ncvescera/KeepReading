@@ -13,7 +13,12 @@ Future<String> getFilePath() async {
 void deleteManual() async {
   final Directory directory = await getApplicationDocumentsDirectory();
   final File file = File('${directory.path}/$fileName');
-  file.delete();
+
+  try {
+    await file.delete();
+  } catch (e) {
+    return;
+  }
 }
 
 Future<bool> existsManual() async {

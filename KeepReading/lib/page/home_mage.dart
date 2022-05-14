@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/file_manager.dart';
 import 'package:keep_reading/main.dart';
-import 'package:keep_reading/page/about_page.dart';
 import 'package:keep_reading/page/no_file.dart';
 import 'package:keep_reading/page/pdf_viewer.dart';
 
