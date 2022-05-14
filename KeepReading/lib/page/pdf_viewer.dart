@@ -16,17 +16,26 @@ class PDFViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PdfControllerPinch controller = PdfControllerPinch(
+    PdfController controller = PdfController(
       document: PdfDocument.openFile(filePath),
     );
 
     return Scaffold(
       appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
       body: Center(
-        child: PdfViewPinch(
+        child: PdfView(
+          // this shit trows a HUGE exception, but it works... so :D
+          // the problem is the PdfView :/ PdfViewPinch works fine
           controller: controller,
           backgroundDecoration: const BoxDecoration(
             color: Colors.grey,
+          ),
+          pageSnapping: false,
+          renderer: (PdfPage page) => page.render(
+            width: page.width * 2,
+            height: page.height * 2,
+            format: PdfPageImageFormat.png,
+            backgroundColor: '#FFFFFF',
           ),
         ),
       ),
