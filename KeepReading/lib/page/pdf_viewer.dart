@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_reading/API/file_manager.dart';
 import 'package:keep_reading/widget/appbar.dart';
 import 'package:pdfx/pdfx.dart';
 
@@ -7,33 +8,31 @@ import 'about_page.dart';
 const String _document = 'manual.pdf';
 
 class PDFViewer extends StatelessWidget {
-  const PDFViewer({Key? key, required this.appName, required this.deleteFile})
-      : super(key: key);
+  const PDFViewer({
+    Key? key,
+    required this.appName,
+    required this.deleteFile,
+    required this.filePath,
+  }) : super(key: key);
 
   final String appName;
   final Function deleteFile;
+  final String filePath;
 
   @override
   Widget build(BuildContext context) {
-    final PdfController controller = PdfController(
-      document: PdfDocument.openAsset('assets/$_document'),
+    PdfControllerPinch controller = PdfControllerPinch(
+      document: PdfDocument.openFile(filePath),
     );
 
     return Scaffold(
       key: const ValueKey('PDFViewer'),
       appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
       body: Center(
-        child: PdfView(
+        child: PdfViewPinch(
           controller: controller,
           backgroundDecoration: const BoxDecoration(
             color: Colors.grey,
-          ),
-          pageSnapping: false,
-          renderer: (PdfPage page) => page.render(
-            width: page.width * 2,
-            height: page.height * 2,
-            format: PdfPageImageFormat.png,
-            backgroundColor: '#FFFFFF',
           ),
         ),
       ),

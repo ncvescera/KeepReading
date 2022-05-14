@@ -5,6 +5,11 @@ import 'package:path_provider/path_provider.dart';
 
 const String fileName = 'manual.pdf';
 
+Future<String> getFilePath() async {
+  final Directory directory = await getApplicationDocumentsDirectory();
+  return '${directory.path}/$fileName';
+}
+
 void deleteManual() async {
   final Directory directory = await getApplicationDocumentsDirectory();
   final File file = File('${directory.path}/$fileName');

@@ -16,10 +16,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool fileExists = false;
+  String filePath = "";
 
   void fileLoaded() {
-    setState(() {
-      fileExists = true;
+    getFilePath().then((path) {
+      setState(() {
+        fileExists = true;
+        filePath = path;
+      });
     });
   }
 
@@ -27,6 +31,7 @@ class _HomePageState extends State<HomePage> {
     deleteManual();
     setState(() {
       fileExists = false;
+      filePath = "";
     });
   }
 
@@ -50,6 +55,7 @@ class _HomePageState extends State<HomePage> {
         ? PDFViewer(
             appName: appName,
             deleteFile: deleteFile,
+            filePath: filePath,
           )
         : NoFilePage(
             notifyParent: fileLoaded,
