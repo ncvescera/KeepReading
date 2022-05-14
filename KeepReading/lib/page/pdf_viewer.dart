@@ -21,7 +21,6 @@ class PDFViewer extends StatelessWidget {
     );
 
     return Scaffold(
-      key: const ValueKey('PDFViewer'),
       appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
       body: Center(
         child: PdfViewPinch(
