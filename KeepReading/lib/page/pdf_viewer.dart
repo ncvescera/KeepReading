@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_reading/widget/appbar.dart';
 import 'package:pdfx/pdfx.dart';
 
 import 'about_page.dart';
@@ -6,9 +7,11 @@ import 'about_page.dart';
 const String _document = 'manual.pdf';
 
 class PDFViewer extends StatelessWidget {
-  const PDFViewer({Key? key, required this.appName}) : super(key: key);
+  const PDFViewer({Key? key, required this.appName, required this.deleteFile})
+      : super(key: key);
 
   final String appName;
+  final Function deleteFile;
 
   @override
   Widget build(BuildContext context) {
@@ -17,41 +20,8 @@ class PDFViewer extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Text(appName),
-            Image.asset('assets/icon/icon.png', width: 30, height: 30),
-          ],
-        ),
-        actions: [
-          PopupMenuButton(
-            onSelected: (value) {
-              switch (value) {
-                case 'about':
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()),
-                  );
-                  break;
-                default:
-                  return;
-              }
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-              PopupMenuItem(
-                value: 'about',
-                child: Row(
-                  children: const [
-                    Text('About '),
-                    Icon(Icons.info, color: Colors.black),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+      key: const ValueKey('PDFViewer'),
+      appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
       body: Center(
         child: PdfView(
           controller: controller,

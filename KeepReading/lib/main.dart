@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:keep_reading/pdf_viewer.dart';
+import 'package:keep_reading/page/home_mage.dart';
 
 const appName = 'KeepReading ';
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: const PDFViewer(appName: appName),
+      home: const HomePage(appName: appName),
     );
   }
 }

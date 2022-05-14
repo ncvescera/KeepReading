@@ -38,6 +38,8 @@ dependencies:
   package_info_plus: ^1.4.2
   url_launcher: ^6.1.2
   pdfx: ^2.0.1+2
+  file_picker: ^4.5.1
+  path_provider: ^2.0.10
 
 dev_dependencies:
   flutter_test:
