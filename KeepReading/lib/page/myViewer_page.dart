@@ -54,7 +54,11 @@ class _PDFViewerState extends State<PDFViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(appName: widget.appName, deleteFile: widget.deleteFile),
+      appBar: MyAppBar(
+        appName: widget.appName,
+        deleteFile: widget.deleteFile,
+        deleteEnabled: loaded,
+      ),
       body: Center(
         child: (loaded)
             ? PhotoViewGallery.builder(

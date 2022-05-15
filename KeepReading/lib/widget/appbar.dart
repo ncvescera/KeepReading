@@ -6,11 +6,13 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
     Key? key,
     required this.appName,
     required this.deleteFile,
+    this.deleteEnabled = true,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   final String appName;
   final Function deleteFile;
+  final bool deleteEnabled;
 
   @override
   final Size preferredSize; // default is 56.0
@@ -73,6 +75,7 @@ class _MyAppBarState extends State<MyAppBar> {
           },
           itemBuilder: (BuildContext context) => <PopupMenuEntry>[
             PopupMenuItem(
+              enabled: widget.deleteEnabled,
               value: 'remove',
               child: Row(
                 children: const [
