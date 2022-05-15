@@ -28,7 +28,7 @@ class PDFGallery extends StatelessWidget {
       backgroundDecoration: const BoxDecoration(
         color: Colors.grey,
       ),
-      enableRotation: true, // TODO: ??
+      enableRotation: false, // rotate the page
       loadingBuilder: (context, event) => const Center(
         child: SizedBox(
           width: 30.0,
