@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -95,32 +94,24 @@ class _AboutPageState extends State<AboutPage> {
               const Text(
                 '\n\n\n\n',
               ),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
+              const Text(
+                'For more info, please visit: ',
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+              TextButton(
+                onPressed: () async {
+                  if (!await launchUrl(_url,
+                      mode: LaunchMode.externalApplication)) {
+                    throw 'Could not launch $_url';
+                  }
+                },
+                child: const Text(
+                  'GitHub Repo',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
                   ),
-                  children: [
-                    const TextSpan(
-                      text: 'For more info, please visit: ',
-                    ),
-                    TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          if (!await launchUrl(_url,
-                              mode: LaunchMode.externalApplication)) {
-                            throw 'Could not launch $_url';
-                          }
-                        },
-                      text: 'GitHub Repo',
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ],
