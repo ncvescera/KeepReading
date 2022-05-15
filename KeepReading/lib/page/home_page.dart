@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/file_manager.dart';
 import 'package:keep_reading/main.dart';
-import 'package:keep_reading/page/no_file.dart';
-import 'package:keep_reading/page/pdf_viewer.dart';
+import 'package:keep_reading/page/noFile_page.dart';
+import 'package:keep_reading/page/pdfViewer_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.appName}) : super(key: key);
@@ -65,6 +65,7 @@ class _HomePageState extends State<HomePage> {
             filePath: filePath,
           )
         : NoFilePage(
+            appName: appName,
             notifyParent: fileLoaded,
             deleteFile: deleteFile,
           );

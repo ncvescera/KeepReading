@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:keep_reading/page/home_mage.dart';
+import 'package:keep_reading/page/home_page.dart';
 
 const appName = 'KeepReading ';
 const barColor = Color.fromARGB(255, 190, 18, 6);
