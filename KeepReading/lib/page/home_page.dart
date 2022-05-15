@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:keep_reading/API/file_manager.dart';
 import 'package:keep_reading/main.dart';
 import 'package:keep_reading/page/noFile_page.dart';
-import 'package:keep_reading/page/pdfViewer_page.dart';
+import 'package:keep_reading/page/myViewer_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.appName}) : super(key: key);

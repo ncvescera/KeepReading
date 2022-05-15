@@ -41,6 +41,13 @@ dependencies:
   file_picker: ^4.5.1
   path_provider: ^2.0.10
 
+# This fix the problem with PhotoViewGallery throwing HUGE exception
+dependency_overrides:
+  photo_view:
+    git:
+      url: https://github.com/bluefireteam/photo_view
+      ref: master
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
