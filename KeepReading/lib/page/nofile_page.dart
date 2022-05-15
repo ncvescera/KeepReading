@@ -31,10 +31,12 @@ class NoFilePage extends StatelessWidget {
                 width: 300,
                 height: 300,
               ),
-              const Text('No Manual Found !' '\n',
-                  style: TextStyle(
-                    fontSize: 24,
-                  )),
+              const Text(
+                'No Manual Found !' '\n',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
               ElevatedButton(
                 onPressed: () async {
                   bool result = await FileManager.pickAndSave();
@@ -49,7 +51,13 @@ class NoFilePage extends StatelessWidget {
                     );
                   }
                 },
-                child: const Text('Choose a file'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text('Choose a file '),
+                    Icon(Icons.upload),
+                  ],
+                ),
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20),
                   padding: const EdgeInsets.all(12.0),
