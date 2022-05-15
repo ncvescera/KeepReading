@@ -3,7 +3,6 @@ import 'package:keep_reading/API/pdf_manager.dart';
 import 'package:keep_reading/widget/appbar.dart';
 import 'package:keep_reading/widget/bottom_navication_bar.dart';
 import 'package:keep_reading/widget/pdf_gallery.dart';
-import 'package:pdfx/pdfx.dart';
 
 class PDFViewer extends StatefulWidget {
   const PDFViewer({
@@ -23,16 +22,8 @@ class PDFViewer extends StatefulWidget {
 
 class _PDFViewerState extends State<PDFViewer> {
   late PageController _controller;
-
   List<Image> pages = [];
   bool loaded = false;
-
-  void updatePages(List<Image> pages) {
-    setState(() {
-      this.pages = pages;
-      loaded = true;
-    });
-  }
 
   @override
   void initState() {
@@ -46,6 +37,13 @@ class _PDFViewerState extends State<PDFViewer> {
     pages.clear();
     _controller.dispose();
     super.dispose();
+  }
+
+  void updatePages(List<Image> pages) {
+    setState(() {
+      this.pages = pages;
+      loaded = true;
+    });
   }
 
   void _jumpToPage(int page) {
