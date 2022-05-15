@@ -17,16 +17,18 @@ class FileManager {
 
   //**
   //  * Try to delete the manual
-  //  * void
+  //  * If successful, return true otherwise false
+  //  * bool
   // */
-  static void deleteManual() async {
+  static Future<bool> deleteManual() async {
     final Directory directory = await getApplicationDocumentsDirectory();
     final File file = File('${directory.path}/$_fileName');
 
     try {
       await file.delete();
+      return true;
     } catch (e) {
-      return;
+      return false;
     }
   }
 

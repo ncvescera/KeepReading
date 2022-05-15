@@ -33,13 +33,20 @@ class _HomePageState extends State<HomePage> {
 
   //**
   //  * Delete the manual and update the state of the widget
+  //  * Return True if the file was deleted successfully else false
+  //  * bool
   // */
-  void deleteFile() {
-    FileManager.deleteManual();
-    setState(() {
-      fileExists = false;
-      filePath = "";
-    });
+  Future<bool> deleteFile() async {
+    bool result = await FileManager.deleteManual();
+
+    if (result) {
+      setState(() {
+        fileExists = false;
+        filePath = "";
+      });
+    }
+
+    return result;
   }
 
   void isFileSaved() async {
