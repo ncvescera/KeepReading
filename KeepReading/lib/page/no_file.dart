@@ -32,7 +32,7 @@ class NoFilePage extends StatelessWidget {
                   )),
               ElevatedButton(
                 onPressed: () async {
-                  bool result = await pickAndSave();
+                  bool result = await FileManager.pickAndSave();
 
                   if (result) {
                     notifyParent();

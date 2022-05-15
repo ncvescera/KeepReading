@@ -17,8 +17,13 @@ class _HomePageState extends State<HomePage> {
   bool fileExists = false;
   String filePath = "";
 
+  //**
+  //  * Notify that the file has been loaded
+  //  * Updates the state of the widget
+  //  * Passed to the child widgets
+  // */
   void fileLoaded() {
-    getFilePath().then((path) {
+    FileManager.getFilePath().then((path) {
       setState(() {
         fileExists = true;
         filePath = path;
@@ -26,16 +31,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //**
+  //  * Delete the manual and update the state of the widget
+  // */
   void deleteFile() {
-    deleteManual();
+    FileManager.deleteManual();
     setState(() {
       fileExists = false;
       filePath = "";
     });
   }
 
-  void checkFile() async {
-    final bool result = await existsManual();
+  void isFileSaved() async {
+    final bool result = await FileManager.existsManual();
 
     if (result) {
       fileLoaded();
@@ -44,7 +52,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    checkFile();
+    isFileSaved();
     super.initState();
   }
 

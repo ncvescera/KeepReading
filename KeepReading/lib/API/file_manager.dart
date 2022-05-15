@@ -3,66 +3,93 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
-const String fileName = 'manual.pdf';
+class FileManager {
+  static const String _fileName = 'manual.pdf';
 
-Future<String> getFilePath() async {
-  final Directory directory = await getApplicationDocumentsDirectory();
-  return '${directory.path}/$fileName';
-}
-
-void deleteManual() async {
-  final Directory directory = await getApplicationDocumentsDirectory();
-  final File file = File('${directory.path}/$fileName');
-
-  try {
-    await file.delete();
-  } catch (e) {
-    return;
-  }
-}
-
-Future<bool> existsManual() async {
-  final Directory directory = await getApplicationDocumentsDirectory();
-  final String path = directory.path;
-
-  final String file = '$path/${fileName}';
-
-  return await File(file).exists();
-}
-
-Future<File?> pickFile() async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowedExtensions: ['pdf'],
-  );
-
-  if (result == null) {
-    return null;
+  //**
+  //  * Returns the path of the manual
+  //  * String
+  // */
+  static Future<String> getFilePath() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    return '${directory.path}/$_fileName';
   }
 
-  return File(result.files.single.path!);
-}
+  //**
+  //  * Try to delete the manual
+  //  * void
+  // */
+  static void deleteManual() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final File file = File('${directory.path}/$_fileName');
 
-Future<bool> saveFile(File? file) async {
-  if (file == null) {
-    return false;
+    try {
+      await file.delete();
+    } catch (e) {
+      return;
+    }
   }
 
-  final Directory directory = await getApplicationDocumentsDirectory();
-  final String path = directory.path;
+  //**
+  //  * Return True if the manual exists in the private memory
+  //  * bool
+  // */
+  static Future<bool> existsManual() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
 
-  final String newPath = '$path/${fileName}';
-  await file.copy(newPath);
+    final String file = '${directory.path}/$_fileName';
 
-  return true;
-}
-
-Future<bool> pickAndSave() async {
-  File? file = await pickFile();
-
-  if (file == null) {
-    return false;
+    return await File(file).exists();
   }
 
-  return await saveFile(file);
+  //**
+  //  * Return the that the user has selected (only ONE PDF)
+  //  * Could be null if the user has not selected anything
+  //  * File?
+  // */
+  static Future<File?> _pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result == null) {
+      return null;
+    }
+
+    return File(result.files.single.path!);
+  }
+
+  //**
+  //  * Try to save given file to the private memory
+  //  * If success return TRUE else FALSE
+  //  * bool
+  // */
+  static Future<bool> _saveFile(File? file) async {
+    if (file == null) {
+      return false;
+    }
+
+    final Directory directory = await getApplicationDocumentsDirectory();
+
+    final String newPath = '${directory.path}/$_fileName';
+    await file.copy(newPath);
+
+    return true;
+  }
+
+  //**
+  //  * Let the user select a file and save it to the private memory
+  //  * If success return TRUE else FALSE
+  //  * bool
+  // */
+  static Future<bool> pickAndSave() async {
+    File? file = await _pickFile();
+
+    if (file == null) {
+      return false;
+    }
+
+    return await _saveFile(file);
+  }
 }
