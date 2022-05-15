@@ -39,6 +39,10 @@ class _PDFViewerState extends State<PDFViewer> {
     super.dispose();
   }
 
+  //**
+  //  * Used as callbak for the preloadPdfPages function
+  //  * void
+  // */
   void updatePages(List<Image> pages) {
     setState(() {
       this.pages = pages;
@@ -46,6 +50,11 @@ class _PDFViewerState extends State<PDFViewer> {
     });
   }
 
+  //**
+  //  * Used as callbak for the BottomBar Widget jumpToPage function
+  //  * Jumps to the given page (if exists)
+  //  * void
+  // */
   void _jumpToPage(int page) {
     _controller
         .jumpToPage(page - 1); // -1 because the page numbers are shifted by 1
