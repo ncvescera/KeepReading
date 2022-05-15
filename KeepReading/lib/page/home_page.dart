@@ -17,6 +17,12 @@ class _HomePageState extends State<HomePage> {
   bool fileExists = false;
   String filePath = "";
 
+  @override
+  void initState() {
+    isFileSaved();
+    super.initState();
+  }
+
   //**
   //  * Notify that the file has been loaded
   //  * Updates the state of the widget
@@ -49,18 +55,17 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
 
+  //**
+  //  * Check if the file exists in private storage
+  //  * if so update the state of the widget
+  //  * void
+  // */
   void isFileSaved() async {
     final bool result = await FileManager.existsManual();
 
     if (result) {
       fileLoaded();
     }
-  }
-
-  @override
-  void initState() {
-    isFileSaved();
-    super.initState();
   }
 
   @override
