@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/file_manager.dart';
+import 'package:keep_reading/main.dart';
 import 'package:keep_reading/widget/appbar.dart';
 
 class NoFilePage extends StatelessWidget {
@@ -18,7 +19,7 @@ class NoFilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
-      appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
+      appBar: MyAppBar(appName: appName, deleteFile: deleteFile),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),

@@ -21,7 +21,7 @@ class PDFViewer extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBarGenerator.mainAppBar(context, appName, deleteFile),
+      appBar: MyAppBar(appName: appName, deleteFile: deleteFile),
       body: Center(
         child: PdfView(
           // this shit trows a HUGE exception, but it works... so :D
