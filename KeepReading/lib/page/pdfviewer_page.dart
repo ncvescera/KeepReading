@@ -63,6 +63,7 @@ class _PDFViewerState extends State<PDFViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: MyAppBar(
         appName: widget.appName,
         deleteFile: widget.deleteFile,

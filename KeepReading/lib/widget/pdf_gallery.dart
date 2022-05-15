@@ -25,11 +25,10 @@ class PDFGallery extends StatelessWidget {
         );
       },
       scrollPhysics: const BouncingScrollPhysics(),
-      backgroundDecoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: Theme.of(context).canvasColor,
+      backgroundDecoration: const BoxDecoration(
+        color: Colors.grey,
       ),
-      enableRotation: true,
+      enableRotation: true, // TODO: ??
       loadingBuilder: (context, event) => const Center(
         child: SizedBox(
           width: 30.0,
