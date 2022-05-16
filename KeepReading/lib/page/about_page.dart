@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_reading/API/update_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,10 +22,11 @@ class _AboutPageState extends State<AboutPage> {
     _getAppVersion();
   }
 
-  void _getAppVersion() {
-    PackageInfo.fromPlatform().then((package) => setState(() {
-          version = package.version;
-        }));
+  void _getAppVersion() async {
+    final String appversion = await UpdateManager.getAppVersion();
+    setState(() {
+      version = appversion;
+    });
   }
 
   @override

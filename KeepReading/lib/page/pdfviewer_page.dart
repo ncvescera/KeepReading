@@ -68,6 +68,7 @@ class _PDFViewerState extends State<PDFViewer> {
         appName: widget.appName,
         deleteFile: widget.deleteFile,
         deleteEnabled: loaded,
+        updateEnabled: loaded,
       ),
       body: Center(
         child: (loaded)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_reading/API/update_manager.dart';
 import 'package:keep_reading/page/about_page.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -7,12 +8,14 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
     required this.appName,
     required this.deleteFile,
     this.deleteEnabled = true,
+    this.updateEnabled = true,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   final String appName;
   final Function deleteFile;
   final bool deleteEnabled;
+  final bool updateEnabled;
 
   @override
   final Size preferredSize; // default is 56.0
@@ -63,6 +66,9 @@ class _MyAppBarState extends State<MyAppBar> {
               case 'remove':
                 _deleteFile(context, widget.deleteFile);
                 break;
+              case 'update':
+                UpdateManager.checkForUpdates(context);
+                break;
               case 'about':
                 Navigator.push(
                   context,
@@ -81,6 +87,16 @@ class _MyAppBarState extends State<MyAppBar> {
                 children: const [
                   Text('Remove Manual '),
                   Icon(Icons.delete, color: Colors.red),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              enabled: widget.updateEnabled,
+              value: 'update',
+              child: Row(
+                children: const [
+                  Text('Update Check '),
+                  Icon(Icons.cloud_sync_sharp, color: Colors.blue),
                 ],
               ),
             ),
