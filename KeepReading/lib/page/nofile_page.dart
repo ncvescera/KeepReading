@@ -17,7 +17,7 @@ class NoFilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
+      //backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
       appBar: MyAppBar(appName: appName, deleteFile: deleteFile),
       body: Center(
         child: Padding(
@@ -27,7 +27,7 @@ class NoFilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/button_icons/noFile.png',
+                'assets/button_icons/noFile2.png',
                 width: 300,
                 height: 300,
               ),
