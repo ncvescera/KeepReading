@@ -18,7 +18,11 @@ class NoFilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
-      appBar: MyAppBar(appName: appName, deleteFile: deleteFile),
+      appBar: MyAppBar(
+        appName: appName,
+        deleteFile: deleteFile,
+        deleteEnabled: false,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
