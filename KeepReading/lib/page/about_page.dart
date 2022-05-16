@@ -54,7 +54,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               Text(
-                'v $version\n\n',
+                'v$version\n\n',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontStyle: FontStyle.italic,
