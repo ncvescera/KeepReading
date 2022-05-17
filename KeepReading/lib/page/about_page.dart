@@ -13,7 +13,7 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  String version = "";
+  String _version = "";
   final Uri _url = Uri.parse('https://github.com/ncvescera/KeepReading');
 
   @override
@@ -22,10 +22,14 @@ class _AboutPageState extends State<AboutPage> {
     _getAppVersion();
   }
 
+  //**
+  //  * Get the app version from pubspec.yaml and update the local variable
+  //  * void
+  // */
   void _getAppVersion() async {
     final String appversion = await UpdateManager.getAppVersion();
     setState(() {
-      version = appversion;
+      _version = appversion;
     });
   }
 
@@ -54,7 +58,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               Text(
-                'v$version\n\n',
+                'v$_version\n\n',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontStyle: FontStyle.italic,
@@ -103,7 +107,7 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               TextButton(
-                onPressed: () async {
+                onPressed: () {
                   UpdateManager.openUrl(_url);
                 },
                 child: const Text(

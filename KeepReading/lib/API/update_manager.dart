@@ -19,9 +19,15 @@ class UpdateManager {
     return package.version;
   }
 
+  //**
+  //  * Try to launch the given url in external browser
+  //  * Return true if the url was opened successfully else false
+  //  * bool
+  // */
   static Future<bool> openUrl(Uri url) async {
     bool result = false;
 
+    // menage the possible exception
     try {
       result = await launchUrl(url, mode: LaunchMode.externalApplication);
       debugPrint('Launched $url');
@@ -32,6 +38,12 @@ class UpdateManager {
     return result;
   }
 
+  //**
+  //  * Check for a new version of the app in the github repository
+  //  * If a new version is available, show a dialog asking the user "New update y/n"
+  //  * and open the url to the release page.
+  //  * void
+  // */
   static Future<void> checkForUpdates(BuildContext context) async {
     // get the latest release from GitHub data
     final http.Response response = await http.get(_latestReleaseURL);
@@ -80,10 +92,6 @@ class UpdateManager {
 
                 // open github
                 openUrl(updateUrl);
-                /*if (!await launchUrl(updateUrl,
-                    mode: LaunchMode.externalApplication)) {
-                  throw 'Could not launch $updateUrl';
-                } */
               },
             ),
           ],
