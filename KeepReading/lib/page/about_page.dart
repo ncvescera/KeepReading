@@ -104,10 +104,7 @@ class _AboutPageState extends State<AboutPage> {
               ),
               TextButton(
                 onPressed: () async {
-                  if (!await launchUrl(_url,
-                      mode: LaunchMode.externalApplication)) {
-                    throw 'Could not launch $_url';
-                  }
+                  UpdateManager.openUrl(_url);
                 },
                 child: const Text(
                   'GitHub Repo',

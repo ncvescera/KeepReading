@@ -19,6 +19,19 @@ class UpdateManager {
     return package.version;
   }
 
+  static Future<bool> openUrl(Uri url) async {
+    bool result = false;
+
+    try {
+      result = await launchUrl(url, mode: LaunchMode.externalApplication);
+      debugPrint('Launched $url');
+    } catch (e) {
+      debugPrint('Could not launch url: $url');
+    }
+
+    return result;
+  }
+
   static Future<void> checkForUpdates(BuildContext context) async {
     // get the latest release from GitHub data
     final http.Response response = await http.get(_latestReleaseURL);
@@ -66,10 +79,11 @@ class UpdateManager {
                 Navigator.of(context).pop();
 
                 // open github
-                if (!await launchUrl(updateUrl,
+                openUrl(updateUrl);
+                /*if (!await launchUrl(updateUrl,
                     mode: LaunchMode.externalApplication)) {
                   throw 'Could not launch $updateUrl';
-                }
+                } */
               },
             ),
           ],
