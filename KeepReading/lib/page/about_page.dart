@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/update_manager.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // needed a StateFull widget because _packageInfo needs to be inizialized and loaded.
 // it seems that packageInfo cant be loaded without an async function.
