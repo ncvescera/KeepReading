@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/file_manager.dart';
+import 'package:keep_reading/API/update_manager.dart';
 import 'package:keep_reading/main.dart';
 import 'package:keep_reading/page/nofile_page.dart';
 import 'package:keep_reading/page/pdfviewer_page.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool fileExists = false;
   String filePath = "";
+  bool reCheckingUpdate = false;
 
   @override
   void initState() {
@@ -68,8 +70,22 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void _checkUpdate(BuildContext context) async {
+    if (reCheckingUpdate) {
+      return;
+    }
+
+    reCheckingUpdate = true;
+
+    if (await UpdateManager.isUpdateAvailable()) {
+      UpdateManager.showNewUpdateMessage(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _checkUpdate(context);
+
     return (fileExists)
         ? PDFViewer(
             appName: appName,

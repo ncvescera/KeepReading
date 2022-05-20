@@ -9,6 +9,8 @@ class UpdateManager {
   static final Uri _latestReleaseURL = Uri.parse(
       'https://api.github.com/repos/ncvescera/KeepReading/releases/latest');
 
+  static Uri _updateUrl = Uri.parse('');
+
   //**
   //  * Return the app version from pubspec.yaml
   //  * String
@@ -38,13 +40,7 @@ class UpdateManager {
     return result;
   }
 
-  //**
-  //  * Check for a new version of the app in the github repository
-  //  * If a new version is available, show a dialog asking the user "New update y/n"
-  //  * and open the url to the release page.
-  //  * void
-  // */
-  static Future<void> checkForUpdates(BuildContext context) async {
+  static Future<bool> isUpdateAvailable() async {
     // get the latest release from GitHub data
     final http.Response response = await http.get(_latestReleaseURL);
     final Map<String, dynamic> responseJson = json.decode(response.body);
@@ -52,22 +48,32 @@ class UpdateManager {
     // get the latest release version, url and currentVersion
     final String gitHubLastReleaseVersion =
         responseJson['tag_name'].substring(1);
-    final Uri updateUrl = Uri.parse(responseJson['html_url']);
     final String currentVersion = await getAppVersion();
+    _updateUrl = Uri.parse(
+        responseJson['html_url']); // get the url of the latest release
+
+    debugPrint('Current ver: $currentVersion');
+    debugPrint('Github ver: $gitHubLastReleaseVersion');
 
     // alredy up to date
     if (currentVersion.compareTo(gitHubLastReleaseVersion) >= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("You are on the latest version ❤️"),
-          duration: Duration(seconds: 2),
-        ),
-      );
-
-      return;
+      return false;
     }
 
-    await showDialog(
+    return true;
+  }
+
+  static void showUpdatedMessage(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("You are on the latest version ❤️"),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  static void showNewUpdateMessage(BuildContext context) {
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -91,12 +97,28 @@ class UpdateManager {
                 Navigator.of(context).pop();
 
                 // open github
-                openUrl(updateUrl);
+                openUrl(_updateUrl);
               },
             ),
           ],
         );
       },
     );
+  }
+
+  //**
+  //  * Check for a new version of the app in the github repository
+  //  * If a new version is available, show a dialog asking the user "New update y/n"
+  //  * and open the url to the release page.
+  //  * void
+  // */
+  static Future<void> checkForUpdates(BuildContext context) async {
+    // alredy up to date
+    if (!(await isUpdateAvailable())) {
+      showUpdatedMessage(context);
+      return;
+    }
+
+    showNewUpdateMessage(context);
   }
 }

@@ -43,7 +43,7 @@ class _PDFViewerState extends State<PDFViewer> {
   //  * Used as callbak for the preloadPdfPages function
   //  * void
   // */
-  void updatePages(List<Image> pages) {
+  void updatePages(List<Image> pages) async {
     setState(() {
       this.pages = pages;
       loaded = true;
