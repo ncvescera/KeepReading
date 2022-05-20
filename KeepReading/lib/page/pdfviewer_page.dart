@@ -67,6 +67,7 @@ class _PDFViewerState extends State<PDFViewer> {
       appBar: MyAppBar(
         appName: widget.appName,
         deleteFile: widget.deleteFile,
+        showMenuButton: loaded,
         deleteEnabled: loaded,
         updateEnabled: loaded,
       ),

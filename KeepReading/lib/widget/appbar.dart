@@ -7,6 +7,7 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
     Key? key,
     required this.appName,
     required this.deleteFile,
+    this.showMenuButton = true,
     this.deleteEnabled = true,
     this.updateEnabled = true,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
@@ -14,6 +15,7 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   final String appName;
   final Function deleteFile;
+  final bool showMenuButton;
   final bool deleteEnabled;
   final bool updateEnabled;
 
@@ -59,59 +61,63 @@ class _MyAppBarState extends State<MyAppBar> {
           Image.asset('assets/icon/icon.png', width: 30, height: 30),
         ],
       ),
-      actions: [
-        PopupMenuButton(
-          onSelected: (value) {
-            switch (value) {
-              case 'remove':
-                _deleteFile(context, widget.deleteFile);
-                break;
-              case 'update':
-                UpdateManager.checkForUpdates(context);
-                break;
-              case 'about':
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AboutPage()),
-                );
-                break;
-              default:
-                return;
-            }
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-            PopupMenuItem(
-              enabled: widget.deleteEnabled,
-              value: 'remove',
-              child: Row(
-                children: const [
-                  Text('Remove Manual '),
-                  Icon(Icons.delete, color: Colors.red),
+      actions: (widget.showMenuButton)
+          ? [
+              PopupMenuButton(
+                onSelected: (value) {
+                  switch (value) {
+                    case 'remove':
+                      _deleteFile(context, widget.deleteFile);
+                      break;
+                    case 'update':
+                      UpdateManager.checkForUpdates(context);
+                      break;
+                    case 'about':
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutPage(),
+                        ),
+                      );
+                      break;
+                    default:
+                      return;
+                  }
+                },
+                itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                  PopupMenuItem(
+                    enabled: widget.deleteEnabled,
+                    value: 'remove',
+                    child: Row(
+                      children: const [
+                        Text('Remove Manual '),
+                        Icon(Icons.delete, color: Colors.red),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    enabled: widget.updateEnabled,
+                    value: 'update',
+                    child: Row(
+                      children: const [
+                        Text('Update Check '),
+                        Icon(Icons.cloud_sync_sharp, color: Colors.blue),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'about',
+                    child: Row(
+                      children: const [
+                        Text('About '),
+                        Icon(Icons.info, color: Colors.black),
+                      ],
+                    ),
+                  ),
                 ],
-              ),
-            ),
-            PopupMenuItem(
-              enabled: widget.updateEnabled,
-              value: 'update',
-              child: Row(
-                children: const [
-                  Text('Update Check '),
-                  Icon(Icons.cloud_sync_sharp, color: Colors.blue),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              value: 'about',
-              child: Row(
-                children: const [
-                  Text('About '),
-                  Icon(Icons.info, color: Colors.black),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
+              )
+            ]
+          : [],
     );
   }
 }
