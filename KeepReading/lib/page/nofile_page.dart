@@ -8,14 +8,18 @@ class NoFilePage extends StatelessWidget {
     required this.appName,
     required this.notifyParent,
     required this.deleteFile,
+    required this.updateCallback,
   }) : super(key: key);
 
   final String appName;
   final Function notifyParent;
   final Function deleteFile;
+  final Function updateCallback;
 
   @override
   Widget build(BuildContext context) {
+    updateCallback();
+
     return Scaffold(
       //backgroundColor: const Color.fromRGBO(224, 224, 224, 1.0),
       appBar: MyAppBar(

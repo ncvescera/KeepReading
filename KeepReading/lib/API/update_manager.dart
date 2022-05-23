@@ -10,6 +10,7 @@ class UpdateManager {
       'https://api.github.com/repos/ncvescera/KeepReading/releases/latest');
 
   static Uri _updateUrl = Uri.parse('');
+  static bool reCheckingUpdate = false;
 
   //**
   //  * Return the app version from pubspec.yaml
@@ -41,6 +42,8 @@ class UpdateManager {
   }
 
   static Future<bool> isUpdateAvailable() async {
+    reCheckingUpdate = true; // called first time when update check in bg
+
     // get the latest release from GitHub data
     final http.Response response = await http.get(_latestReleaseURL);
     final Map<String, dynamic> responseJson = json.decode(response.body);

@@ -6,7 +6,10 @@ import 'package:keep_reading/page/nofile_page.dart';
 import 'package:keep_reading/page/pdfviewer_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.appName}) : super(key: key);
+  const HomePage({
+    Key? key,
+    required this.appName,
+  }) : super(key: key);
 
   final String appName;
 
@@ -17,12 +20,53 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool fileExists = false;
   String filePath = "";
-  bool reCheckingUpdate = false;
+
+  // at start is a CiruclarProgressIndicator then check if file exists
+  // and it can be a PDFViewerPage or NoFilePage
+  Widget _body = const CircularProgressIndicator();
 
   @override
   void initState() {
     isFileSaved();
     super.initState();
+  }
+
+  //**
+  // * Set the state for display pdf reader
+  // * The file is present in the local storage and _body = PDFViewer
+  // * void
+  // */
+  void setStateFile(String path) {
+    setState(() {
+      fileExists = true;
+      filePath = path;
+
+      _body = PDFViewer(
+        appName: appName,
+        deleteFile: deleteFile,
+        filePath: filePath,
+        updateCallback: _checkUpdate,
+      );
+    });
+  }
+
+  //**
+  // * Set the state for display pdf selector page
+  // * The file is NOT present in the local storage and _body = NoFilePage
+  // * void
+  // */
+  void setStateNoFile() {
+    setState(() {
+      fileExists = false;
+      filePath = "";
+
+      _body = NoFilePage(
+        appName: appName,
+        notifyParent: fileLoaded,
+        deleteFile: deleteFile,
+        updateCallback: _checkUpdate,
+      );
+    });
   }
 
   //**
@@ -32,10 +76,7 @@ class _HomePageState extends State<HomePage> {
   // */
   void fileLoaded() {
     FileManager.getFilePath().then((path) {
-      setState(() {
-        fileExists = true;
-        filePath = path;
-      });
+      setStateFile(path);
     });
   }
 
@@ -48,10 +89,7 @@ class _HomePageState extends State<HomePage> {
     bool result = await FileManager.deleteManual();
 
     if (result) {
-      setState(() {
-        fileExists = false;
-        filePath = "";
-      });
+      setStateNoFile();
     }
 
     return result;
@@ -67,35 +105,25 @@ class _HomePageState extends State<HomePage> {
 
     if (result) {
       fileLoaded();
+    } else {
+      setStateNoFile();
     }
   }
 
-  void _checkUpdate(BuildContext context) async {
-    if (reCheckingUpdate) {
-      return;
-    }
-
-    reCheckingUpdate = true;
-
-    if (await UpdateManager.isUpdateAvailable()) {
+  //**
+  //  * Check if the app has an update
+  //  * only on the first time the app is opened
+  //  * void
+  // */
+  void _checkUpdate() async {
+    if (!UpdateManager.reCheckingUpdate &&
+        await UpdateManager.isUpdateAvailable()) {
       UpdateManager.showNewUpdateMessage(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    _checkUpdate(context);
-
-    return (fileExists)
-        ? PDFViewer(
-            appName: appName,
-            deleteFile: deleteFile,
-            filePath: filePath,
-          )
-        : NoFilePage(
-            appName: appName,
-            notifyParent: fileLoaded,
-            deleteFile: deleteFile,
-          );
+    return _body;
   }
 }

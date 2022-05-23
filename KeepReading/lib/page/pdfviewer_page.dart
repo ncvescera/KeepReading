@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:keep_reading/API/pdf_manager.dart';
 import 'package:keep_reading/widget/appbar.dart';
 import 'package:keep_reading/widget/bottom_navication_bar.dart';
@@ -10,11 +11,13 @@ class PDFViewer extends StatefulWidget {
     required this.appName,
     required this.deleteFile,
     required this.filePath,
+    required this.updateCallback,
   }) : super(key: key);
 
   final String appName;
   final Function deleteFile;
   final String filePath;
+  final Function updateCallback;
 
   @override
   State<PDFViewer> createState() => _PDFViewerState();
@@ -47,6 +50,12 @@ class _PDFViewerState extends State<PDFViewer> {
     setState(() {
       this.pages = pages;
       loaded = true;
+    });
+
+    // perform the update check after setState is executed
+    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+      debugPrint('After setState !');
+      widget.updateCallback();
     });
   }
 
