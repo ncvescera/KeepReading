@@ -9,8 +9,28 @@ It helps you to jump directly to a specific section of the manual with just a ta
 
 <p align="center"> <img src="./imgs/screen.gif" height="500px"></p>
 
+## Features 🚀
 
-## Build from Source
+<p align="center"> 
+    <img src="./imgs/aperto.gif" height="350px">
+    <img src="./imgs/utilizzo-pdf.gif" height="350px">
+    <img src="./imgs/eliminato-pdf.gif" height="350px">
+    <img src="./imgs/check-update.gif" height="350px">
+    <img src="./imgs/update-onstart.gif" height="350px">
+</p>
+
+- Select and Import PDFs from phone storage
+- Auto update check with GitHub Releases
+- Quick Jump to PDFs section via buttons
+- Pre-rendering PDF's pages to avoid lag when using the app
+
+## Install ⬇️
+
+Download the APK/IPA file from this link [Latest Release](https://github.com/ncvescera/KeepReading/releases/latest) and just install it !
+
+_For now is only available APK installer (Android), I'll have to find a way to build for IOS too 🦽_
+
+## Build from Source ⚙️
 
 1. Clone the repo: 
     ```
@@ -21,15 +41,7 @@ It helps you to jump directly to a specific section of the manual with just a ta
     ```
     flutter pub get
     ```
-3. Copy your manual inside `assets/`. You must have something like this:
-    ```
-    ls assets
-    button_icons
-    icon
-    manual.pdf
-    ```
-
-4. Build the apk/ipa with
+3. Build the apk/ipa with
     ```
     flutter build apk
     flutter build ipa
@@ -38,3 +50,10 @@ It helps you to jump directly to a specific section of the manual with just a ta
 For more info see: 
 - [Deploy on Android](https://docs.flutter.dev/deployment/android)
 - [Deploy on IOS](https://docs.flutter.dev/deployment/ios)
+
+## Future Updates 💪
+
+- [ ] IOS release
+- [ ] Page Helpers, some tools that help you with specific blocks e.g. pre-calculated intersections in complex cables, ecc
+- [ ] Desktop version ??
+- [ ] Better performance when PDF is pre-rendering pages (there is a problems with Isolate module and PDF reader: [issue](https://github.com/ScerIO/packages.flutter/issues/299))
