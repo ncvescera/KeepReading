@@ -53,7 +53,7 @@ class _PDFViewerState extends State<PDFViewer> {
     });
 
     // perform the update check after setState is executed
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
       debugPrint('After setState !');
       widget.updateCallback();
     });
