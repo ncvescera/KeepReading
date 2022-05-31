@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   bool fileExists = false;
   String filePath = "";
 
-  // at start is a CiruclarProgressIndicator then check if file exists
+  // at start is a CircularProgressIndicator then check if file exists
   // and it can be a PDFViewerPage or NoFilePage
   Widget _body = const CircularProgressIndicator();
 

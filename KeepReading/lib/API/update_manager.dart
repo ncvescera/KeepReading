@@ -58,7 +58,7 @@ class UpdateManager {
     debugPrint('Current ver: $currentVersion');
     debugPrint('Github ver: $gitHubLastReleaseVersion');
 
-    // alredy up to date
+    // already up to date
     if (currentVersion.compareTo(gitHubLastReleaseVersion) >= 0) {
       return false;
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keep_reading/API/update_manager.dart';
 
-// needed a StateFull widget because _packageInfo needs to be inizialized and loaded.
+// needed a StateFull widget because _packageInfo needs to be initialized and loaded.
 // it seems that packageInfo cant be loaded without an async function.
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -90,7 +90,7 @@ class _AboutPageState extends State<AboutPage> {
                     ),
                     TextSpan(
                       text:
-                          'It helps you to jump directly to a specific section of the maual with just a tap  🚀!',
+                          'It helps you to jump directly to a specific section of the manual with just a tap  🚀!',
                     ),
                   ],
                 ),

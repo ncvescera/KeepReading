@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:keep_reading/API/pdf_manager.dart';
 import 'package:keep_reading/widget/appbar.dart';
-import 'package:keep_reading/widget/bottom_navication_bar.dart';
+import 'package:keep_reading/widget/bottom_navigation_bar.dart';
 import 'package:keep_reading/widget/pdf_gallery.dart';
 
 class PDFViewer extends StatefulWidget {
@@ -43,7 +43,7 @@ class _PDFViewerState extends State<PDFViewer> {
   }
 
   //**
-  //  * Used as callbak for the preloadPdfPages function
+  //  * Used as callback for the preloadPdfPages function
   //  * void
   // */
   void updatePages(List<Image> pages) async {
@@ -60,7 +60,7 @@ class _PDFViewerState extends State<PDFViewer> {
   }
 
   //**
-  //  * Used as callbak for the BottomBar Widget jumpToPage function
+  //  * Used as callback for the BottomBar Widget jumpToPage function
   //  * Jumps to the given page (if exists)
   //  * void
   // */
