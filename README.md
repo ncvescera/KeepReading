@@ -28,7 +28,7 @@ It helps you to jump directly to a specific section of the manual with just a ta
 
 Download the APK/IPA file from this link [Latest Release](https://github.com/ncvescera/KeepReading/releases/latest) and just install it !
 
-_For now is only available APK installer (Android), I'll have to find a way to build for IOS too 🦽_
+_For now only APK installer (Android) is available 😞, I'll have to find a way to build for IOS too 🦽_
 
 ## Build from Source ⚙️
 
