@@ -18,8 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool fileExists = false;
-  String filePath = "";
+  String _filePath = "";
 
   // at start is a CircularProgressIndicator then check if file exists
   // and it can be a PDFViewerPage or NoFilePage
@@ -38,14 +37,13 @@ class _HomePageState extends State<HomePage> {
   // */
   void setStateFile(String path) {
     setState(() {
-      fileExists = true;
-      filePath = path;
+      _filePath = path;
 
       _body = PDFViewer(
         appName: appName,
         deleteFile: deleteFile,
-        filePath: filePath,
-        updateCallback: _checkUpdate,
+        filePath: _filePath,
+        updateCallback: _checkUpdateOnStart,
       );
     });
   }
@@ -57,14 +55,13 @@ class _HomePageState extends State<HomePage> {
   // */
   void setStateNoFile() {
     setState(() {
-      fileExists = false;
-      filePath = "";
+      _filePath = "";
 
       _body = NoFilePage(
         appName: appName,
         notifyParent: fileLoaded,
         deleteFile: deleteFile,
-        updateCallback: _checkUpdate,
+        updateCallback: _checkUpdateOnStart,
       );
     });
   }
@@ -103,11 +100,7 @@ class _HomePageState extends State<HomePage> {
   void isFileSaved() async {
     final bool result = await FileManager.existsManual();
 
-    if (result) {
-      fileLoaded();
-    } else {
-      setStateNoFile();
-    }
+    (result) ? fileLoaded() : setStateNoFile();
   }
 
   //**
@@ -115,7 +108,7 @@ class _HomePageState extends State<HomePage> {
   //  * only on the first time the app is opened
   //  * void
   // */
-  void _checkUpdate() async {
+  void _checkUpdateOnStart() async {
     if (!UpdateManager.reCheckingUpdate &&
         await UpdateManager.isUpdateAvailable()) {
       UpdateManager.showNewUpdateMessage(context);

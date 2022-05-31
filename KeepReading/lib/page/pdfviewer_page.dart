@@ -25,8 +25,8 @@ class PDFViewer extends StatefulWidget {
 
 class _PDFViewerState extends State<PDFViewer> {
   late PageController _controller;
-  List<Image> pages = [];
-  bool loaded = false;
+  List<Image> _pages = [];
+  bool _loaded = false;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _PDFViewerState extends State<PDFViewer> {
 
   @override
   void dispose() {
-    pages.clear();
+    _pages.clear();
     _controller.dispose();
     super.dispose();
   }
@@ -48,8 +48,8 @@ class _PDFViewerState extends State<PDFViewer> {
   // */
   void updatePages(List<Image> pages) async {
     setState(() {
-      this.pages = pages;
-      loaded = true;
+      _pages = pages;
+      _loaded = true;
     });
 
     // perform the update check after setState is executed
@@ -76,20 +76,20 @@ class _PDFViewerState extends State<PDFViewer> {
       appBar: MyAppBar(
         appName: widget.appName,
         deleteFile: widget.deleteFile,
-        showMenuButton: loaded,
-        deleteEnabled: loaded,
-        updateEnabled: loaded,
+        showMenuButton: _loaded,
+        deleteEnabled: _loaded,
+        updateEnabled: _loaded,
       ),
       body: Center(
-        child: (loaded)
+        child: (_loaded)
             ? PDFGallery(
                 controller: _controller,
-                pages: pages,
+                pages: _pages,
               )
             : const CircularProgressIndicator(),
       ),
       bottomNavigationBar:
-          (loaded) ? MyBottomNavigationBar(jumpToPage: _jumpToPage) : null,
+          (_loaded) ? MyBottomNavigationBar(jumpToPage: _jumpToPage) : null,
     );
   }
 }
