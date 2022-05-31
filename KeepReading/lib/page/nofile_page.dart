@@ -35,7 +35,7 @@ class NoFilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/button_icons/noFile.png',
+                'assets/noFilePageImgs/noFileImage.png',
                 width: 300,
                 height: 300,
               ),
