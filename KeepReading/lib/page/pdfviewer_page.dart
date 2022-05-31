@@ -15,9 +15,9 @@ class PDFViewer extends StatefulWidget {
   }) : super(key: key);
 
   final String appName;
-  final Function deleteFile;
   final String filePath;
-  final Function updateCallback;
+  final Future<bool> Function() deleteFile;
+  final void Function() updateCallback;
 
   @override
   State<PDFViewer> createState() => _PDFViewerState();

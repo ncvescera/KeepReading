@@ -14,10 +14,10 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   final String appName;
-  final Function deleteFile;
   final bool showMenuButton;
   final bool deleteEnabled;
   final bool updateEnabled;
+  final Future<bool> Function() deleteFile;
 
   @override
   final Size preferredSize; // default is 56.0
@@ -32,7 +32,8 @@ class _MyAppBarState extends State<MyAppBar> {
   //  * Execute the passed function (delete file and update status) and if successful, show a snackbar
   //  * void
   // */
-  void _deleteFile(BuildContext context, Function deleteCall) async {
+  void _deleteFile(
+      BuildContext context, Future<bool> Function() deleteCall) async {
     bool result = await deleteCall(); // true if file was deleted
 
     if (result) {

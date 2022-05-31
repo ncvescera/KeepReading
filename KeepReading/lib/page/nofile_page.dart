@@ -12,9 +12,9 @@ class NoFilePage extends StatelessWidget {
   }) : super(key: key);
 
   final String appName;
-  final Function notifyParent;
-  final Function deleteFile;
-  final Function updateCallback;
+  final void Function() notifyParent;
+  final Future<bool> Function() deleteFile;
+  final void Function() updateCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class NoFilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/button_icons/noFile2.png',
+                'assets/button_icons/noFile.png',
                 width: 300,
                 height: 300,
               ),

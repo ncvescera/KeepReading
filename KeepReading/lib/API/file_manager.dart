@@ -39,9 +39,9 @@ class FileManager {
   static Future<bool> existsManual() async {
     final Directory directory = await getApplicationDocumentsDirectory();
 
-    final String file = '${directory.path}/$_fileName';
+    final String path = '${directory.path}/$_fileName';
 
-    return await File(file).exists();
+    return await File(path).exists();
   }
 
   //**

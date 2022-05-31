@@ -6,7 +6,7 @@ class MyBottomNavigationBar extends StatelessWidget {
     required this.jumpToPage,
   }) : super(key: key);
 
-  final Function jumpToPage;
+  final void Function(int) jumpToPage;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyBottomNavigationBar extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                icon: Image.asset('assets/button_icons/wires.png'),
+                icon: Image.asset('assets/button_icons/normal_wires.png'),
                 onPressed: () {
                   jumpToPage(5); // normal wires
                 },
@@ -37,13 +37,13 @@ class MyBottomNavigationBar extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: Image.asset('assets/button_icons/simbol.png'),
+                icon: Image.asset('assets/button_icons/symbols.png'),
                 onPressed: () {
                   jumpToPage(7); // icons
                 },
               ),
               IconButton(
-                icon: Image.asset('assets/button_icons/saymon.png'),
+                icon: Image.asset('assets/button_icons/simon_says.png'),
                 onPressed: () {
                   jumpToPage(8); // Simon says
                 },
@@ -67,13 +67,13 @@ class MyBottomNavigationBar extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: Image.asset('assets/button_icons/complex.png'),
+                icon: Image.asset('assets/button_icons/complex_wires.png'),
                 onPressed: () {
                   jumpToPage(13); // complex wires
                 },
               ),
               IconButton(
-                icon: Image.asset('assets/button_icons/cross.png'),
+                icon: Image.asset('assets/button_icons/cross_wires.png'),
                 onPressed: () {
                   jumpToPage(14); // crossed wires
                 },
@@ -85,7 +85,7 @@ class MyBottomNavigationBar extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: Image.asset('assets/button_icons/pass.png'),
+                icon: Image.asset('assets/button_icons/password.png'),
                 onPressed: () {
                   jumpToPage(16); // password
                 },

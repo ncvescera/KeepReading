@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 
-void preloadPdfPages(String filePath, Function callbak) async {
+void preloadPdfPages(String filePath,
+    void Function(List<Image>) notifyPagePreloadingSuccess) async {
   final document = await PdfDocument.openFile(filePath); // Pages start at 1
   final totalPages = document.pagesCount;
 
@@ -45,5 +46,5 @@ void preloadPdfPages(String filePath, Function callbak) async {
 
   await document.close();
 
-  callbak(pages);
+  notifyPagePreloadingSuccess(pages);
 }

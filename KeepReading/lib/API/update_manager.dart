@@ -116,12 +116,8 @@ class UpdateManager {
   //  * void
   // */
   static Future<void> checkForUpdates(BuildContext context) async {
-    // alredy up to date
-    if (!(await isUpdateAvailable())) {
-      showUpdatedMessage(context);
-      return;
-    }
-
-    showNewUpdateMessage(context);
+    (await isUpdateAvailable())
+        ? showNewUpdateMessage(context)
+        : showUpdatedMessage(context);
   }
 }

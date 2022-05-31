@@ -25,9 +25,9 @@ class _AboutPageState extends State<AboutPage> {
   //  * void
   // */
   void _getAppVersion() async {
-    final String appversion = await UpdateManager.getAppVersion();
+    final String appVersion = await UpdateManager.getAppVersion();
     setState(() {
-      _version = appversion;
+      _version = appVersion;
     });
   }
 
