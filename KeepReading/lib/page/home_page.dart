@@ -83,13 +83,13 @@ class _HomePageState extends State<HomePage> {
   //  * bool
   // */
   Future<bool> deleteFile() async {
-    bool result = await FileManager.deleteManual();
+    bool deleteSuccessful = await FileManager.deleteManual();
 
-    if (result) {
+    if (deleteSuccessful) {
       setStateNoFile();
     }
 
-    return result;
+    return deleteSuccessful;
   }
 
   //**
@@ -98,9 +98,9 @@ class _HomePageState extends State<HomePage> {
   //  * void
   // */
   void isFileSaved() async {
-    final bool result = await FileManager.existsManual();
+    final bool fileExists = await FileManager.existsManual();
 
-    (result) ? fileLoaded() : setStateNoFile();
+    (fileExists) ? fileLoaded() : setStateNoFile();
   }
 
   //**
@@ -109,8 +109,11 @@ class _HomePageState extends State<HomePage> {
   //  * void
   // */
   void _checkUpdateOnStart() async {
-    if (!UpdateManager.reCheckingUpdate &&
-        await UpdateManager.isUpdateAvailable()) {
+    bool updateAvailable = await UpdateManager.isUpdateAvailable();
+    bool firstTimeUpdateCheck = !UpdateManager.reCheckingUpdate;
+    bool updateCondition = updateAvailable && firstTimeUpdateCheck;
+
+    if (updateCondition) {
       UpdateManager.showNewUpdateMessage(context);
     }
   }

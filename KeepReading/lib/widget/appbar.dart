@@ -34,23 +34,21 @@ class _MyAppBarState extends State<MyAppBar> {
   // */
   void _deleteFile(
       BuildContext context, Future<bool> Function() deleteCall) async {
-    bool result = await deleteCall(); // true if file was deleted
+    bool deleteSuccessful = await deleteCall(); // true if file was deleted
 
-    if (result) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Deleted Manual Successfully 👍"),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("No Manual to Delete 🙃"),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    }
+    (deleteSuccessful)
+        ? ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Deleted Manual Successfully 👍"),
+              duration: Duration(seconds: 2),
+            ),
+          )
+        : ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("No Manual to Delete 🙃"),
+              duration: Duration(seconds: 2),
+            ),
+          );
   }
 
   @override
