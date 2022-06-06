@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.5.0+1
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
@@ -34,10 +34,19 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  # syncfusion_flutter_pdfviewer: ^20.1.52-beta
   package_info_plus: ^1.4.2
   url_launcher: ^6.1.2
   pdfx: ^2.0.1+2
+  file_picker: ^4.5.1
+  path_provider: ^2.0.10
+  http: ^0.13.4
+
+# This fix the problem with PhotoViewGallery throwing HUGE exception
+dependency_overrides:
+  photo_view:
+    git:
+      url: https://github.com/bluefireteam/photo_view
+      ref: master
 
 dev_dependencies:
   flutter_test:
@@ -62,9 +71,9 @@ flutter_icons:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/
     - assets/button_icons/
     - assets/icon/
+    - assets/noFilePageImgs/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
