@@ -26,9 +26,11 @@ It helps you to jump directly to a specific section of the manual with just a ta
 
 ## Install ⬇️
 
-Download the APK/IPA file from this link [Latest Release](https://github.com/ncvescera/KeepReading/releases/latest) and just install it !
+[![Codemagic build status](https://api.codemagic.io/apps/629f525050f339bef537fc16/629f525050f339bef537fc15/status_badge.svg)](https://codemagic.io/apps/629f525050f339bef537fc16/629f525050f339bef537fc15/latest_build)
 
-_For now only APK installer (Android) is available 😞, I'll have to find a way to build for IOS too 👨‍🦽_
+Download the APK/APP.ZIP file from this link [Latest Release](https://github.com/ncvescera/KeepReading/releases/latest) and just install it !
+
+_Builds are made with ❤️ by [CodeMagic](https://codemagic.io/start/)!_
 
 ## Build from Source ⚙️
 
